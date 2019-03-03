@@ -31,8 +31,6 @@ func connHandler(conn net.Conn) {
 	}
 }
 
-
-
 func main() {
 	port := "80"
 	conn, err := net.Dial("tcp", fmt.Sprintf(":%s", port))
