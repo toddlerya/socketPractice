@@ -6,20 +6,6 @@ import (
 	"strings"
 )
 
-func server() {
-	server, err := net.Listen("tcp", ":80")
-	if err != nil {
-		panic(err)
-	}
-	for {
-		conn, err:= server.Accept()
-		if err != nil {
-			panic(err)
-		}
-		go connHandler(conn)
-	}
-}
-
 func connHandler(conn net.Conn) {
 	buf := make([]byte, 4096)
 	for {
@@ -42,7 +28,7 @@ func connHandler(conn net.Conn) {
 		case "echo":
 			echoStr := strings.Join(inputs[1:], " ") + "\n"
 			_, err = conn.Write([]byte(echoStr))
-			if err != nil{
+			if err != nil {
 				panic(err)
 			}
 		case "quit":
